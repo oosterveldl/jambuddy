@@ -1,4 +1,6 @@
 export class JamBuddy {
+  // todo change rootArray so it shows A#/Bb, C#/Db etc. in frontend but actually stores A#, C# in chords since this is
+  // what tonejs accepts
   public rootArray: string[] = ['A', 'A#/Bb', 'B', 'C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab'];
   public chordTypeArray: string[] = ['Maj', 'Min'];
   // public selectedRoot: string;
