@@ -1,13 +1,14 @@
 import { JamBuddy } from "./JamBuddy";
 import * as Tone from "tone";
-import * as React from 'react';
+import * as React from "react";
+
 export default class Home extends React.Component {
-  private jamBuddy: JamBuddy= new JamBuddy();
+  private jamBuddy: JamBuddy = new JamBuddy();
   private selected = {
     root: "A",
     chordType: "Maj"
   };
-  
+
   onChangeRoot(event: any) {
     this.selected.root = event.target.value;
   }
