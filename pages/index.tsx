@@ -38,21 +38,21 @@ export default class Home extends React.Component {
     return (
       <div>
         <h1>jambuddy</h1>
-        <select name='root' id='root' onChange={e => this.onChangeRoot(e)}>
+        <select name="root" id="root" onChange={e => this.onChangeRoot(e)}>
           {this.jamBuddy.rootArray.map(root => {
             return <option value={root}>{root}</option>;
           })}
         </select>
         <select
-          name='chordType'
-          id='chordType'
+          name="chordType"
+          id="chordType"
           onChange={e => this.onChangeChordType(e)}
         >
           {this.jamBuddy.chordTypeArray.map(chordType => {
             return <option value={chordType}>{chordType}</option>;
           })}
         </select>
-        <button onClick={() => this.playChord()} className='sound-button'>
+        <button onClick={() => this.playChord()} className="sound-button">
           Music please
         </button>
       </div>
