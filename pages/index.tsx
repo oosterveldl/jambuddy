@@ -1,50 +1,60 @@
-import {JamBuddy} from './JamBuddy';
-import * as Tone from 'tone';
-
-function Home() {
-  const jamBuddy = new JamBuddy();
-
-  const selected = {
-    root: 'A',
-    chordType: 'Maj'
+import { JamBuddy } from "./JamBuddy";
+import * as Tone from "tone";
+import * as React from 'react';
+export default class Home extends React.Component {
+  private jamBuddy: JamBuddy= new JamBuddy();
+  private selected = {
+    root: "A",
+    chordType: "Maj"
   };
+  
+  onChangeRoot(event: any) {
+    this.selected.root = event.target.value;
+  }
 
-  const onChangeRoot = (event: any) => {
-    selected.root = event.target.value;
-  };
+  onChangeChordType(event: any) {
+    this.selected.chordType = event.target.value;
+  }
 
-  const onChangeChordType = (event: any) => {
-    selected.chordType = event.target.value;
-  };
-
-  const playChord = () => {
-    const chord = jamBuddy.createChord(selected.root, selected.chordType);
+  playChord() {
+    const chord = this.jamBuddy.createChord(
+      this.selected.root,
+      this.selected.chordType
+    );
     // todo format array returned by createChord(), it should contain a 4 after each note ie C4, E4 etc
     // pass the duration
     // make sure we only save notes as x# and not X#/Xb, in the frontend we should display X#/Xb though
-    var tremolo = new Tone.Tremolo().start();
-    var polySynth = new Tone.PolySynth(3, Tone.Synth).chain(tremolo, Tone.Master);
+    const tremolo = new Tone.Tremolo().start();
+    const polySynth = new Tone.PolySynth(3, Tone.Synth).chain(
+      tremolo,
+      Tone.Master
+    );
 
-    polySynth.triggerAttackRelease(['C4', 'E4', 'G4'], '1n');
-  };
+    polySynth.triggerAttackRelease(["C4", "E4", "G4"], "1n");
+  }
 
-  return (
-    <div>
-      <h1>jambuddy</h1>
-      <select name="root" id="root" onChange={(e) => onChangeRoot(e)}>
-        {jamBuddy.rootArray.map((root) => {
-          return <option value={root}>{root}</option>;
-        })}
-      </select>
-      <select name="chordType" id="chordType" onChange={(e) => onChangeChordType(e)}>
-        {jamBuddy.chordTypeArray.map((chordType) => {
-          return <option value={chordType}>{chordType}</option>;
-        })}
-      </select>
-      <button onClick={() => playChord()} className="sound-button">Music please</button>
-    </div>
-  );
-};
-
-export default Home;
-
+  render() {
+    return (
+      <div>
+        <h1>jambuddy</h1>
+        <select name="root" id="root" onChange={e => this.onChangeRoot(e)}>
+          {this.jamBuddy.rootArray.map(root => {
+            return <option value={root}>{root}</option>;
+          })}
+        </select>
+        <select
+          name="chordType"
+          id="chordType"
+          onChange={e => this.onChangeChordType(e)}
+        >
+          {this.jamBuddy.chordTypeArray.map(chordType => {
+            return <option value={chordType}>{chordType}</option>;
+          })}
+        </select>
+        <button onClick={() => this.playChord()} className="sound-button">
+          Music please
+        </button>
+      </div>
+    );
+  }
+}
