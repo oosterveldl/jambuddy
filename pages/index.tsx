@@ -9,12 +9,12 @@ export default class Home extends React.Component {
     chordType: "Maj"
   };
 
-  onChangeRoot(event: any) {
-    this.selected.root = event.target.value;
+  onChangeRoot(event: React.ChangeEvent<HTMLSelectElement>) {
+    this.selected.root = event.currentTarget.value;
   }
 
-  onChangeChordType(event: any) {
-    this.selected.chordType = event.target.value;
+  onChangeChordType(event: React.ChangeEvent<HTMLSelectElement>) {
+    this.selected.chordType = event.currentTarget.value;
   }
 
   playChord() {
