@@ -1,6 +1,6 @@
 import { JamBuddy } from "./JamBuddy";
-import * as Tone from "tone";
-import * as React from "react";
+import Tone from "tone";
+import React from "react";
 
 export default class Home extends React.Component {
   private jamBuddy: JamBuddy = new JamBuddy();
